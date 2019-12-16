@@ -5,6 +5,20 @@
 -- no spaces between words
 -- max of 11 characters total
 
+
+
+CREATE EXTENSION unaccent;
+
+
+select 
+product_name
+,LEFT(initcap(regexp_replace(unaccent(product_name), '[^a-zA-Z]', '', 'g')), 11)
+
+from products
+
+order by product_name
+
+
 -- keywords to google: translate, initcap, replace, regex_replace
 -- also play around with the examples here: 
 -- https://stackoverflow.com/questions/4428645/postgres-regexp-replace-want-to-allow-only-a-z-and-a-z
